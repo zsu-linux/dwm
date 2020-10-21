@@ -76,7 +76,7 @@ static const char *downvolcmd[]    =  {"/home/zsu/config/scripts/alsa-dowm.sh", 
 static const char *togglevolcmd[]  =  {"/home/zsu/config/scripts/alsa-toggle.sh", NULL };
 static const char *screenshotcmd[] =  { "flameshot", "gui", NULL };
 static const char *calccmd[]       =  { "mate-calc", NULL };
-static const char *musiccmd[]      =  { "listen1", NULL };
+static const char *musiccmd[]      =  { "/home/zsu/config/scripts/listen1.sh", NULL };
 static const char *trayercmd[]     =  { "/home/zsu/config/scripts/trayer.sh" };
 
 static Key keys[] = {
