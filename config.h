@@ -78,6 +78,7 @@ static const char *screenshotcmd[] =  { "flameshot", "gui", NULL };
 static const char *calccmd[]       =  { "mate-calc", NULL };
 static const char *musiccmd[]      =  { "/home/zsu/config/scripts/listen1.sh", NULL };
 static const char *trayercmd[]     =  { "/home/zsu/config/scripts/trayer.sh" };
+static const char *obs[]  =  { "obs", NULL };
 
 static Key keys[] = {
 	/* modifier                     key             function        argument */
@@ -86,12 +87,13 @@ static Key keys[] = {
 	{ MODKEY,                       XK_apostrophe,  togglescratch,  {.v = scratchpadcmd } },
 	{ MODKEY,                       XK_b,           spawn,          {.v = calccmd } },
 	{ MODKEY,                       XK_c,           spawn,          {.v = browsercmd } },
+	{ MODKEY,                       XK_o,           spawn,          {.v = obs } },
 	{ MODKEY,                       XK_l,           spawn,          {.v = musiccmd } },
 	{ MODKEY,                       XK_v,           spawn,          {.v = trayercmd } },
 	{ 0,                            XK_Print,       spawn,          {.v = screenshotcmd } },
-	{ MODKEY,                       XK_minus,       spawn,          {.v = downvolcmd } },
-  { MODKEY,                       XK_equal,       spawn,          {.v = upvolcmd } },
-	{ MODKEY|ControlMask,           XK_minus,       spawn,          {.v = togglevolcmd } },
+	{ MODKEY|ControlMask,           XK_comma,       spawn,          {.v = downvolcmd } },
+  { MODKEY|ControlMask,           XK_period,      spawn,          {.v = upvolcmd } },
+	{ MODKEY|ControlMask,           XK_m,           spawn,          {.v = togglevolcmd } },
 	{ MODKEY|ControlMask,           XK_n,           rotatestack,    {.i = +1 } },
 	{ MODKEY|ControlMask,           XK_i,           rotatestack,    {.i = -1 } },
 	{ MODKEY,                       XK_i,           focusstack,     {.i = +1 } },
