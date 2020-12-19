@@ -78,7 +78,7 @@ static const char *screenshotcmd[] =  { "flameshot", "gui", NULL };
 static const char *calccmd[]       =  { "mate-calc", NULL };
 static const char *musiccmd[]      =  { "/home/zsu/config/scripts/listen1.sh", NULL };
 static const char *trayercmd[]     =  { "/home/zsu/config/scripts/trayer.sh" };
-static const char *obs[]  =  { "obs", NULL };
+static const char *obs[]  =  { "/home/zsu/config/scripts/obs.sh", NULL };
 
 static Key keys[] = {
 	/* modifier                     key             function        argument */
