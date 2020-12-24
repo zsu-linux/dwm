@@ -79,6 +79,7 @@ static const char *calccmd[]       =  { "mate-calc", NULL };
 static const char *musiccmd[]      =  { "/home/zsu/config/scripts/listen1.sh", NULL };
 static const char *trayercmd[]     =  { "/home/zsu/config/scripts/trayer.sh" };
 static const char *obs[]  =  { "/home/zsu/config/scripts/obs.sh", NULL };
+static const char *VboxWindows7[]  =  { "virtualbox", "/home/zsu/.VirtualBoxVMs/windows7/windows7.vbox", NULL };
 
 static Key keys[] = {
 	/* modifier                     key             function        argument */
@@ -94,6 +95,7 @@ static Key keys[] = {
 	{ MODKEY|ControlMask,           XK_comma,       spawn,          {.v = downvolcmd } },
   { MODKEY|ControlMask,           XK_period,      spawn,          {.v = upvolcmd } },
 	{ MODKEY|ControlMask,           XK_m,           spawn,          {.v = togglevolcmd } },
+	{ ShiftMask|ControlMask,        XK_7,           spawn,          {.v = VboxWindows7 } },
 	{ MODKEY|ControlMask,           XK_n,           rotatestack,    {.i = +1 } },
 	{ MODKEY|ControlMask,           XK_i,           rotatestack,    {.i = -1 } },
 	{ MODKEY,                       XK_i,           focusstack,     {.i = +1 } },
