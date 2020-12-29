@@ -80,6 +80,7 @@ static const char *musiccmd[]      =  { "/home/zsu/config/scripts/listen1.sh", N
 static const char *trayercmd[]     =  { "/home/zsu/config/scripts/trayer.sh" };
 static const char *obs[]  =  { "/home/zsu/config/scripts/obs.sh", NULL };
 static const char *VboxWindows7[]  =  { "virtualbox", "/home/zsu/.VirtualBoxVMs/windows7/windows7.vbox", NULL };
+static const char *keyboard[]  =  { "/home/zsu/config/etc/enable.sh", NULL };
 
 static Key keys[] = {
 	/* modifier                     key             function        argument */
@@ -89,6 +90,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_b,           spawn,          {.v = calccmd } },
 	{ MODKEY,                       XK_c,           spawn,          {.v = browsercmd } },
 	{ MODKEY,                       XK_o,           spawn,          {.v = obs } },
+	{ MODKEY,                       XK_j,           spawn,          {.v = keyboard } },
 	{ MODKEY,                       XK_l,           spawn,          {.v = musiccmd } },
 	{ MODKEY,                       XK_v,           spawn,          {.v = trayercmd } },
 	{ 0,                            XK_Print,       spawn,          {.v = screenshotcmd } },
