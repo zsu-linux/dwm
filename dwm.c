@@ -1507,7 +1507,7 @@ run(void)
 void
 runautostart(void)
 {
-	system("cd ~/.config/scripts; ./autostart.sh &");	
+	system("cd /home/zsu/.config/scripts; ./autostart.sh &");	
 }
 
 void

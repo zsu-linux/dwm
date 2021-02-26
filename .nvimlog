@@ -1,0 +1,4 @@
+INFO  2021-02-26T16:24:48.482 3156  on_process_exit:392: exited: pid=3158 status=0 stoptime=0
+INFO  2021-02-26T16:24:48.484 3156  on_process_exit:392: exited: pid=3159 status=0 stoptime=0
+INFO  2021-02-26T16:24:48.487 3156  on_process_exit:392: exited: pid=3160 status=0 stoptime=0
+INFO  2021-02-26T16:24:48.521 3156  emsg_multiline:685: E185: Cannot find color scheme 'deus' (/home/zsu/.config/nvim/init.vim (line 612))
