@@ -82,7 +82,7 @@ static const char *keyboard[]      =  { "/home/zsu/.config/scripts/colemak.sh", 
 
 static Key keys[] = {
 	/* modifier                     key             function        argument */
-	{ MODKEY,                       XK_a,           spawn,          {.v = dmenucmd } },
+	{ MODKEY,                       XK_k,           spawn,          {.v = dmenucmd } },
 	{ MODKEY,                       XK_Return,      spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_apostrophe,  togglescratch,  {.v = scratchpadcmd } },
 	{ MODKEY,                       XK_b,           spawn,          {.v = calccmd } },
