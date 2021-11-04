@@ -48,15 +48,17 @@ static const int resizehints = 1;    /* 1 means respect size hints in tiled resi
 
 static const Layout layouts[] = {
 	/* symbol     arrange function */
-	{ "[T]",     tile },    /* first entry is default */
-	{ "[W]",     NULL },    /* no layout function means floating behavior */
-	{ "[M]",     monocle },
+	{ "[]=",      tile },    /* first entry is default */
+	{ "><>",      NULL },    /* no layout function means floating behavior */
+	{ "[M]",      monocle },
 };
+
 
 /* key definitions */
 #define MODKEY Mod4Mask
 #define TAGKEYS(KEY,TAG) \
-	{ MODKEY,                       KEY,      view,           {.ui = 1 << TAG} }, \
+	{ MODKEY|ControlMask,           KEY,      view,           {.ui = 1 << TAG} }, \
+	{ Mod1Mask|ControlMask,         KEY,      view,           {.ui = 1 << TAG} }, \
 	{ MODKEY|ControlMask,           KEY,      toggleview,     {.ui = 1 << TAG} }, \
 	{ MODKEY|ShiftMask,             KEY,      tag,            {.ui = 1 << TAG} }, \
 	{ MODKEY|ControlMask|ShiftMask, KEY,      toggletag,      {.ui = 1 << TAG} },
@@ -66,69 +68,69 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[]      = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
-static const char *termcmd[]       = { "st", NULL };
-static const char scratchpadname[] = "scratchpad";
-static const char *scratchpadcmd[] = { "st", "-t", scratchpadname, "-g", "80x25", NULL };
-static const char *browsercmd[]    =  { "/home/zsu/.config/scripts/browser.sh", NULL };
-static const char *upvolcmd[]      =  {"/home/zsu/.config/scripts/alsa-up.sh", NULL };
-static const char *downvolcmd[]    =  {"/home/zsu/.config/scripts/alsa-down.sh", NULL };
-static const char *togglevolcmd[]  =  {"/home/zsu/.config/scripts/alsa-toggle.sh", NULL };
-static const char *screenshotcmd[] =  { "flameshot", "gui", NULL };
-static const char *calccmd[]       =  { "mate-calc", NULL };
-static const char *musiccmd[]      =  { "/home/zsu/.config/scripts/listen1.sh", NULL };
-static const char *trayercmd[]     =  { "/home/zsu/.config/scripts/trayer.sh" };
-static const char *keyboard[]      =  { "/home/zsu/.config/scripts/colemak.sh", NULL };
+static const char *dmenucmd[]             =  { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
+static const char *termcmd[]              =  { "st", NULL };
+static const char scratchpadname[]        =  "scratchpad";
+static const char *scratchpadcmd[]        =  { "st", "-t", scratchpadname, "-g", "120x34", NULL };
+static const char *browsercmd[]           =  { "/home/zsu/.config/scripts/browser.sh", NULL };
+static const char *upvolcmd[]             =  {"/home/zsu/.config/scripts/alsa-up.sh", NULL };
+static const char *downvolcmd[]           =  {"/home/zsu/.config/scripts/alsa-down.sh", NULL };
+static const char *togglevolcmd[]         =  {"/home/zsu/.config/scripts/alsa-toggle.sh", NULL };
+static const char *screenshotcmd[]        =  { "flameshot", "gui", NULL };
+static const char *trayercmd[]            =  { "/home/zsu/.config/scripts/trayer.sh" };
+static const char *brightnessPluscmd[]    =  { "/home/zsu/.config/scripts/brightnessPlus.sh" };
+static const char *brightnessReducecmd[]  =  { "/home/zsu/.config/scripts/brightnessReduce.sh" };
+static const char *touchpadcmd[]  =  { "/home/zsu/.config/scripts/touchpad.sh" };
 
 static Key keys[] = {
 	/* modifier                     key             function        argument */
+	{ MODKEY,                       XK_Up,          spawn,          {.v = brightnessPluscmd } },
+	{ MODKEY,                       XK_Down,        spawn,          {.v = brightnessReducecmd } },
+	{ MODKEY|ControlMask,           XK_m,           spawn,          {.v = touchpadcmd } },
 	{ MODKEY,                       XK_o,           spawn,          {.v = dmenucmd } },
 	{ MODKEY,                       XK_Return,      spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_apostrophe,  togglescratch,  {.v = scratchpadcmd } },
-	{ MODKEY,                       XK_b,           spawn,          {.v = calccmd } },
 	{ MODKEY,                       XK_c,           spawn,          {.v = browsercmd } },
-	{ MODKEY,                       XK_j,           spawn,          {.v = keyboard } },
-	{ MODKEY,                       XK_l,           spawn,          {.v = musiccmd } },
 	{ MODKEY,                       XK_v,           spawn,          {.v = trayercmd } },
 	{ 0,                            XK_Print,       spawn,          {.v = screenshotcmd } },
-	{ MODKEY|ControlMask,           XK_comma,       spawn,          {.v = downvolcmd } },
-  { MODKEY|ControlMask,           XK_period,      spawn,          {.v = upvolcmd } },
-	{ MODKEY|ControlMask,           XK_m,           spawn,          {.v = togglevolcmd } },
-	{ MODKEY|ControlMask,           XK_n,           rotatestack,    {.i = +1 } },
-	{ MODKEY|ControlMask,           XK_i,           rotatestack,    {.i = -1 } },
+	{ MODKEY,                       XK_Left,        spawn,          {.v = downvolcmd } },
+  { MODKEY,                       XK_Right,       spawn,          {.v = upvolcmd } },
+	{ MODKEY|ControlMask,           XK_Left,        spawn,          {.v = togglevolcmd } },
+	{ MODKEY|Mod1Mask,              XK_i,           rotatestack,    {.i = +1 } },
+	{ MODKEY|Mod1Mask,              XK_n,           rotatestack,    {.i = -1 } },
 	{ MODKEY,                       XK_i,           focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_n,           focusstack,     {.i = -1 } },
-	{ MODKEY,                       XK_comma,       incnmaster,     {.i = +1 } },
-	{ MODKEY,                       XK_period,      incnmaster,     {.i = -1 } },
-	{ MODKEY,                       XK_k,           setmfact,       {.f = -0.05} },
-	{ MODKEY,                       XK_m,           setmfact,       {.f = +0.05} },
+	{ MODKEY,                       XK_bracketleft, incnmaster,     {.i = +1 } },
+	{ MODKEY,                       XK_bracketright,incnmaster,     {.i = -1 } },
+	{ MODKEY|ControlMask,           XK_n,           setmfact,       {.f = -0.05} },
+	{ MODKEY|ControlMask,           XK_i,           setmfact,       {.f = +0.05} },
 	{ MODKEY,                       XK_space,       zoom,           {0} },
 	{ MODKEY,                       XK_Tab,         view,           {0} },
-	{ MODKEY|ControlMask,           XK_z,           killclient,     {0} },
-	{ MODKEY,                       XK_t,           setlayout,      {.v = &layouts[0]} },
-	{ MODKEY,                       XK_r,           setlayout,      {.v = &layouts[1]} },
-	{ MODKEY,                       XK_s,           setlayout,      {.v = &layouts[2]} },
-	{ MODKEY,                       XK_h,           fullscreen,     {0} },
-	{ MODKEY,                       XK_d,           setlayout,      {0} },
+	{ MODKEY,                       XK_x,           killclient,     {0} },
+	{ MODKEY,                       XK_m,           setlayout,      {.v = &layouts[0]} },
+	{ MODKEY,                       XK_period,       setlayout,      {.v = &layouts[1]} },
+	{ MODKEY,                       XK_comma,      setlayout,      {.v = &layouts[2]} },
+	{ MODKEY,                       XK_k,           fullscreen,     {0} },
+	{ MODKEY,                       XK_h,           setlayout,      {0} },
 	{ MODKEY|ShiftMask,             XK_space,       togglefloating, {0} },
-	{ MODKEY,                       XK_y,           view,           {.ui = ~0 } },
-	{ MODKEY|ShiftMask,             XK_y,           tag,            {.ui = ~0 } },
-	{ MODKEY,                       XK_F5,          focusmon,       {.i = -1 } },
-	{ MODKEY,                       XK_F5,          focusmon,       {.i = +1 } },
-	{ MODKEY|ShiftMask,             XK_F5,          tagmon,         {.i = -1 } },
-	{ MODKEY|ShiftMask,             XK_F5,          tagmon,         {.i = +1 } },
-	{ MODKEY,                       XK_bracketleft, setgaps,        {.i = -1 } },
-	{ MODKEY,                       XK_bracketright,setgaps,        {.i = +1 } },
-	{ MODKEY|ShiftMask,             XK_bracketleft, setgaps,        {.i = 0  } },
-	TAGKEYS(                        XK_1,                            0)
-	TAGKEYS(                        XK_2,                            1)
-	TAGKEYS(                        XK_3,                            2)
-	TAGKEYS(                        XK_4,                            3)
-	TAGKEYS(                        XK_5,                            4)
-	TAGKEYS(                        XK_6,                            5)
-	TAGKEYS(                        XK_7,                            6)
-	TAGKEYS(                        XK_8,                            7)
-	TAGKEYS(                        XK_9,                            8)
+	{ MODKEY|ControlMask,           XK_o,           view,           {.ui = ~0 } },
+	//{ MODKEY|ShiftMask,             XK_0,           tag,            {.ui = ~0 } },
+	//{ MODKEY,                       XK_z,          focusmon,       {.i = -1 } },
+	//{ MODKEY,                       XK_q,          focusmon,       {.i = +1 } },
+	//{ MODKEY|ShiftMask,             XK_z,          tagmon,         {.i = -1 } },
+	//{ MODKEY|ShiftMask,             XK_q,          tagmon,         {.i = +1 } },
+	{ MODKEY,                       XK_minus,       setgaps,        {.i = -1 } },
+	{ MODKEY,                       XK_equal,       setgaps,        {.i = +1 } },
+	{ MODKEY|ShiftMask,             XK_equal,       setgaps,        {.i = 0  } },
+	TAGKEYS(                        XK_a,                            0)
+	TAGKEYS(                        XK_r,                            1)
+	TAGKEYS(                        XK_s,                            2)
+	TAGKEYS(                        XK_t,                            3)
+	TAGKEYS(                        XK_d,                            4)
+	TAGKEYS(                        XK_h,                            5)
+	TAGKEYS(                        XK_n,                            6)
+	TAGKEYS(                        XK_e,                            7)
+	TAGKEYS(                        XK_i,                            8)
 	{ MODKEY,                       XK_F12,         quit,           {0} },
 };
 
