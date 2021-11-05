@@ -29,7 +29,7 @@ static const unsigned int alphas[][3]      = {
 };
 
 /* tagging */
-static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
+static const char *tags[] = { "A", "R", "S", "T", "D", "H", "N", "E", "I" };
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -114,7 +114,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_h,           setlayout,      {0} },
 	{ MODKEY|ShiftMask,             XK_space,       togglefloating, {0} },
 	{ MODKEY|ControlMask,           XK_o,           view,           {.ui = ~0 } },
-	//{ MODKEY|ShiftMask,             XK_0,           tag,            {.ui = ~0 } },
+	{ MODKEY|ShiftMask,             XK_o,           tag,            {.ui = ~0 } },
 	//{ MODKEY,                       XK_z,          focusmon,       {.i = -1 } },
 	//{ MODKEY,                       XK_q,          focusmon,       {.i = +1 } },
 	//{ MODKEY|ShiftMask,             XK_z,          tagmon,         {.i = -1 } },
