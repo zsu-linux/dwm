@@ -8,8 +8,9 @@ static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 static const Bool viewontag         = True;     /* Switch view on tag switch */
-static const char *fonts[]          = { "Source Code Pro:size=15" };
-static const char dmenufont[]       = "Source Code Pro:size=15";
+static const char *fonts[]          = { "Source Code Pro:size=18",
+                                        "WenQuanYi Micro Hei:size=15:type=Regular:antialias=true:autohint=true",};
+static const char dmenufont[]       = "Source Code Pro:size=18";
 static const char col_gray1[]       = "#222222";
 static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#ffffff";
@@ -29,7 +30,7 @@ static const unsigned int alphas[][3]      = {
 };
 
 /* tagging */
-static const char *tags[] = { "A", "R", "S", "T", "D", "H", "N", "E", "I" };
+static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -57,10 +58,9 @@ static const Layout layouts[] = {
 /* key definitions */
 #define MODKEY Mod4Mask
 #define TAGKEYS(KEY,TAG) \
-	{ MODKEY|ControlMask,           KEY,      view,           {.ui = 1 << TAG} }, \
-	{ Mod1Mask|ControlMask,         KEY,      view,           {.ui = 1 << TAG} }, \
-	{ MODKEY|ControlMask,           KEY,      toggleview,     {.ui = 1 << TAG} }, \
-	{ MODKEY|ShiftMask,             KEY,      tag,            {.ui = 1 << TAG} }, \
+	{ MODKEY,                       KEY,      view,           {.ui = 1 << TAG} }, \
+	{ MODKEY|ShiftMask,             KEY,      toggleview,     {.ui = 1 << TAG} }, \
+	{ MODKEY|ControlMask,           KEY,      tag,            {.ui = 1 << TAG} }, \
 	{ MODKEY|ControlMask|ShiftMask, KEY,      toggletag,      {.ui = 1 << TAG} },
 
 /* helper for spawning shell commands in the pre dwm-5.0 fashion */
@@ -87,9 +87,9 @@ static Key keys[] = {
 	{ MODKEY,                       XK_Up,          spawn,          {.v = brightnessPluscmd } },
 	{ MODKEY,                       XK_Down,        spawn,          {.v = brightnessReducecmd } },
 	{ MODKEY|ControlMask,           XK_m,           spawn,          {.v = touchpadcmd } },
-	{ MODKEY,                       XK_o,           spawn,          {.v = dmenucmd } },
+	{ MODKEY,                       XK_apostrophe,  spawn,          {.v = dmenucmd } },
 	{ MODKEY,                       XK_Return,      spawn,          {.v = termcmd } },
-	{ MODKEY,                       XK_apostrophe,  togglescratch,  {.v = scratchpadcmd } },
+	{ MODKEY,                       XK_o,           togglescratch,  {.v = scratchpadcmd } },
 	{ MODKEY,                       XK_c,           spawn,          {.v = browsercmd } },
 	{ MODKEY,                       XK_v,           spawn,          {.v = trayercmd } },
 	{ 0,                            XK_Print,       spawn,          {.v = screenshotcmd } },
@@ -102,8 +102,8 @@ static Key keys[] = {
 	{ MODKEY,                       XK_n,           focusstack,     {.i = -1 } },
 	{ MODKEY,                       XK_bracketleft, incnmaster,     {.i = +1 } },
 	{ MODKEY,                       XK_bracketright,incnmaster,     {.i = -1 } },
-	{ MODKEY|ShiftMask,             XK_n,           setmfact,       {.f = -0.05} },
-	{ MODKEY|ShiftMask,             XK_i,           setmfact,       {.f = +0.05} },
+	{ MODKEY|ControlMask,           XK_n,           setmfact,       {.f = -0.05} },
+	{ MODKEY|ControlMask,           XK_i,           setmfact,       {.f = +0.05} },
 	{ MODKEY,                       XK_space,       zoom,           {0} },
 	{ MODKEY,                       XK_Tab,         view,           {0} },
 	{ MODKEY,                       XK_x,           killclient,     {0} },
@@ -113,8 +113,8 @@ static Key keys[] = {
 	{ MODKEY,                       XK_k,           fullscreen,     {0} },
 	{ MODKEY,                       XK_h,           setlayout,      {0} },
 	{ MODKEY|ShiftMask,             XK_space,       togglefloating, {0} },
-	{ MODKEY|ControlMask,           XK_o,           view,           {.ui = ~0 } },
-	//{ MODKEY|ShiftMask,             XK_o,           tag,            {.ui = ~0 } },
+	{ MODKEY,                       XK_0,           view,           {.ui = ~0 } },
+	//{ MODKEY|ShiftMask,             XK_0,           tag,            {.ui = ~0 } },
 	//{ MODKEY,                       XK_z,          focusmon,       {.i = -1 } },
 	//{ MODKEY,                       XK_q,          focusmon,       {.i = +1 } },
 	//{ MODKEY|ShiftMask,             XK_z,          tagmon,         {.i = -1 } },
@@ -122,15 +122,15 @@ static Key keys[] = {
 	{ MODKEY,                       XK_minus,       setgaps,        {.i = -1 } },
 	{ MODKEY,                       XK_equal,       setgaps,        {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_equal,       setgaps,        {.i = 0  } },
-	TAGKEYS(                        XK_a,                            0)
-	TAGKEYS(                        XK_r,                            1)
-	TAGKEYS(                        XK_s,                            2)
-	TAGKEYS(                        XK_t,                            3)
-	TAGKEYS(                        XK_d,                            4)
-	TAGKEYS(                        XK_h,                            5)
-	TAGKEYS(                        XK_n,                            6)
-	TAGKEYS(                        XK_e,                            7)
-	TAGKEYS(                        XK_i,                            8)
+	TAGKEYS(                        XK_1,                            0)
+	TAGKEYS(                        XK_2,                            1)
+	TAGKEYS(                        XK_3,                            2)
+	TAGKEYS(                        XK_4,                            3)
+	TAGKEYS(                        XK_5,                            4)
+	TAGKEYS(                        XK_6,                            5)
+	TAGKEYS(                        XK_7,                            6)
+	TAGKEYS(                        XK_8,                            7)
+	TAGKEYS(                        XK_9,                            8)
 	{ MODKEY,                       XK_F12,         quit,           {0} },
 };
 
