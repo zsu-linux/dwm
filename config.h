@@ -80,12 +80,14 @@ static const char *screenshotcmd[]        =  { "flameshot", "gui", NULL };
 static const char *trayercmd[]            =  { "/home/zsu/.config/scripts/trayer.sh" };
 static const char *brightnessPluscmd[]    =  { "/home/zsu/.config/scripts/brightnessPlus.sh" };
 static const char *brightnessReducecmd[]  =  { "/home/zsu/.config/scripts/brightnessReduce.sh" };
-static const char *touchpadcmd[]  =  { "/home/zsu/.config/scripts/touchpad.sh" };
+static const char *touchpadcmd[]          = { "/home/zsu/.config/scripts/touchpad.sh" };
+static const char *bluetoothcmd[]         = { "/home/zsu/.config/scripts/Bluetooth.sh" };
 
 static Key keys[] = {
 	/* modifier                     key             function        argument */
 	{ MODKEY,                       XK_Up,          spawn,          {.v = brightnessPluscmd } },
 	{ MODKEY,                       XK_Down,        spawn,          {.v = brightnessReducecmd } },
+	{ MODKEY,                       XK_b,           spawn,          {.v = bluetoothcmd } },
 	{ MODKEY|ControlMask,           XK_m,           spawn,          {.v = touchpadcmd } },
 	{ MODKEY,                       XK_apostrophe,  spawn,          {.v = dmenucmd } },
 	{ MODKEY,                       XK_Return,      spawn,          {.v = termcmd } },
