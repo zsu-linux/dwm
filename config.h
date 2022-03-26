@@ -8,9 +8,10 @@ static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 static const Bool viewontag         = True;     /* Switch view on tag switch */
-static const char *fonts[]          = { "Source Code Pro:size=18:type=Regular:antialias=true:autohint=true",
-                                        "WenQuanYi Micro Hei:size=15:type=Regular:antialias=true:autohint=true"};
-static const char dmenufont[]       = "Source Code Pro:size=18:type=Regular:antialias=true:autohint=true";
+static const char *fonts[]          = { "Source Code Pro:size=21:type=Regular:antialias=true:autohint=true",
+																			  "Fira Code Nerd Font Mono:size=25:type=Regular:antialias=true:autohint=true",
+                                        "WenQuanYi Micro Hei:size=18:type=Regular:antialias=true:autohint=true"};
+static const char dmenufont[]       = "Fira Code Nerd Font:size=21:type=Regular:antialias=true:autohint=true";
 static const char col_gray1[]       = "#222222";
 static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#ffffff";
